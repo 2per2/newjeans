@@ -5,24 +5,13 @@ const db = require('../models/index'),
 	Op = db.Sequelize.Op;
 
 module.exports = {
-	showCommentPage: async (req, res) => {
+	getAllComments: async (req, res, next) => {
 		try {
 			data = await Comment.findAll({
 				include: [{ model: User }] // User 모델의 데이터를 함께 가져옴
 			});
-			res.render('comment', { message: req.flash(), comments: data });
-		} catch (err) {
-			res.status(500).send({
-				message: err.message
-			});
-		}
-	},
-	showMemberPage: async (req, res) => {
-		try {
-			data = await Comment.findAll({
-				include: [{ model: User }] // User 모델의 데이터를 함께 가져옴
-			});
-			res.render('member', { message: req.flash(), comments: data, name: req.params.name });
+			req.comments = data;
+			next();
 		} catch (err) {
 			res.status(500).send({
 				message: err.message
