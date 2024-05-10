@@ -1,0 +1,11 @@
+<form class='form-signin' action='/signin' method='post'>
+	<% if (message) { %>
+		<%= message.success %>
+	<% } %>
+	<h1>Sign in</h1>
+	<input type='text' name='id' value='' placeholder='Enter your id' required/>
+	<br>
+	<input type='text' name='password' value='' placeholder='Enter your password' required/>
+	<input type='submit' name='submit'>
+</form>
+<a href='/password_reset'>Forgot my password</a>

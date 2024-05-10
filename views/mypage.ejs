@@ -1,0 +1,35 @@
+<h1>My page</h1>
+<% if (message && message.success) { %>
+	<div> sdfjsdkfs <%= message.success %> </div>
+<% } %>
+
+<% if (message && message.error) { %>
+    <div>
+        <%= message.error %>
+    </div>
+<% } %>
+<button id='btn-refresh'>refresh</button>
+<ul>
+	<li>Your id: <%= currentUser.id %></li>
+	<li>
+		<% if (!currentUser.id) { %> <!--이메일이 공백인 경우-->
+		    Please enter your email
+		<% } else { %> <!--마이페이지에 접속한 경우-->
+			Your email: <%= currentUser.email %>
+		<% } %>
+		<form id='form-email' action='/mypage/update/email' method='post'>
+			<input type='text' name='email' value='' placeholder='Enter your email' id='input-email' />
+			<button type='submit' name='submit' id='btn-update-email'>update</button> 
+		</form>
+	</li>
+	<li>
+		<% if (!currentUser.birthdate) { %> <!--이메일이 공백인 경우-->
+		    Please enter your birthdate 
+		<% } else { %> <!--마이페이지에 접속한 경우-->
+			Your birthdate: <%= currentUser.birthdate %>
+		<% } %>
+		<form id='form-birthdate' action='/mypage/update/birthdate' method='post'>
+			<input class='birthdate' type='date' name='birthdate' value='' min='1900-01-01' placeholder='Enter your birthday or update later' />
+			<button type='submit' name='submit' id='btn-update-date'>update</button> 
+		</form>
+</ul>

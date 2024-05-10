@@ -1,0 +1,14 @@
+<% if (message) { %>
+                <%= message.success %>
+<% } %>
+<div class='all-users'>
+    <ol>
+        <% user.forEach(u => { %>
+            <li>
+                <%= u.id %>
+		<%= u.email %>
+                <button class='btn-delete' data-userId='<%= u.id %>' method='delete'>delete</button>
+            </li>
+        <% }); %>
+    </ol>
+</div>

@@ -1,0 +1,30 @@
+<nav>
+	<ul class='menu'>
+		<li>
+			<a href='/'>home</a>
+		</li>
+		<li>
+			<a href='#'>members</a>
+			<ul class='submenu'>
+				<li><a href='/member/minji'>Min-ji</a></li>
+				<li><a href='/member/hanni'>Hanni</a></li>
+				<li><a href='/member/danielle'>Danielle</a></li>
+				<li><a href='/member/haerin'>Hae-rin</a></li>
+				<li><a href='/member/hyein'>Hye-in</a></li>
+			</ul>
+		</li>
+		<li>
+			<% if (loggedIn) { %>
+				<a href='/mypage'>mypage</a>
+			<% } else { %>
+				<a href='/signin'>signin</a>
+			<% } %>
+		</li>
+		<li>
+			<a href='/fan'>fans</a>
+		</li>
+		<li>
+			<a href='/comment'>comments</a>
+		</li>
+	</ul>
+</nav>

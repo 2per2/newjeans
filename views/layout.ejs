@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/css/test.css">
+        <title>NewJeans</title>
+</head>
+<body>
+<script>
+    var newEmail = '<%= typeof newEmail !== "undefined" ? newEmail : "" %>';
+</script>
+
+	<header>
+		<div class='title'>
+			<h1>NewJeans Website</h1>
+		</div>
+		<%- include('partials/loginStatus') %>
+	</header>
+	<%- include("partials/nav") %>
+        <main>
+                <%- body %>
+        </main>
+	<%- include("partials/footer") %>
+	<script src="/javascript/deleteBtn.js"></script>
+	<script src="/javascript/updateBtn.js"></script>
+	<script src="/javascript/maxDate.js"></script>
+ 	<script src="/javascript/commentBtn.js"></script>	
+</body>
+</html>

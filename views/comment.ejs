@@ -1,0 +1,41 @@
+ <h1>Comments</h1>
+    <% if (message && message.success) { %>
+        <div> <%= message.success %> </div>
+<% } %>
+
+<% if (message && message.error) { %>
+    <div>
+        <%= message.error %>
+    </div>
+<% } %>
+    <!-- 댓글 목록 -->
+    <ul>
+        <% comments.forEach(comment => { %>
+            <li>
+		<% if (comment.parentCommentId) { %>
+			<a href='#'> reply to <%= comment.parentCommentId %> </a>
+		<% } %>
+		<a href='#' class='a-reply' data-commentId='
+		<%= comment.commentId %>
+		'> <%= comment.commentId %> </a>
+                <strong><%= comment.userId %></strong>: <%= comment.content %> <%= comment.createdAt %>
+		<button class='btn-delete-comment' data-commentId='
+			<%= comment.commentId %>
+		'>delete</button>
+            </li>
+        <% }); %>
+    </ul>
+    
+    <!-- 로그인 상태일 때만 댓글 작성 폼 보이기 -->
+    <% if (loggedIn) { %>
+        <h2>Write a comment</h2>
+        <form id='form-content' action="/comment" method="post">
+            <div>
+                <label for="content">Comment:</label>
+                <textarea id="input-content" name="content" rows="4" cols="50"></textarea>
+            </div>
+            <button type="submit" id='btn-post-comment' data-parentCommentId=''>Submit</button>
+        </form>
+    <% } else { %>
+        <p>Please log in to write a comment.</p>
+    <% } %>

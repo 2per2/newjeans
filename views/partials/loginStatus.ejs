@@ -1,0 +1,10 @@
+<div class='loginStatus'>
+	<% if (loggedIn) { %>
+		<p>Hello, <%= currentUser.id %></p>
+		<a href='/signout'>sign out</a>
+	<% } else { %>
+		<p>Please sign in or sign up</p>
+		<a href='/signin'>sign in</a>
+		<a href='/signup'>sign up</a>
+	<% } %>
+</div>

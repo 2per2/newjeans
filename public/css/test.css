@@ -1,0 +1,111 @@
+:root {
+	--main-bg-color: white;
+	--header-title-bg-color: Mediumpurple;
+	--loginStatus-bg-color: Magenta;
+	--nav-bg-color: Paleturquoise;
+	--menu-bg-color: white; /* 필요하면 지정 */
+	--menu-bg-hover-color: Magenta;
+	--menu-text-color: Darkmagenta;
+	--submenu-bg-color: Mediumpurple;
+	--submenu-bg-hover-color: Magenta;
+	--footer-bg-color: Mediumpurple;
+}
+
+* {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.image {
+	width: 400px;
+	height: 300px;
+}
+
+
+/* header */
+header {
+	color: white;
+}
+
+.title {
+	background-color: var(--header-title-bg-color);
+	text-align: center;
+}
+
+.loginStatus {
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: var(--loginStatus-bg-color);
+	display: inline-block;
+}
+	
+
+/* navigation */
+nav {
+  text-align: center;
+  background-color: var(--nav-bg-color);
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  /* background-color: var(--menu-bg-color); */
+}
+
+.menu > li {
+  display: inline-block;
+  position: relative; /* 서브메뉴를 포지셔닝하기 위해 부모에 상대적 위치 지정 */
+}
+
+.menu > li > a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--menu-text-color);
+  text-decoration: none;
+}
+
+.menu > li:hover {
+  background-color: var(--menu-bg-hover-color);
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px; /* 서브메뉴의 너비 조정 */
+  background-color: var(--submenu-bg-color);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 0; /* 초기에는 안 보이게 설정 */
+  overflow: hidden;
+  transition: height 0.5s; /* 높이 변화에 대한 transition 추가 */
+}
+
+.submenu a {
+  display: block;
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.submenu > li:hover {
+	background-color: var(--submenu-bg-hover-color);
+}
+
+.menu > li:hover .submenu {
+  height: auto; /* 호버 시 높이를 자동으로 조정하여 보여주도록 설정 */
+}
+
+
+/* footer */
+footer {
+	background-color: var(--footer-bg-color);
+	color: white;
+	text-align: center;
+}
