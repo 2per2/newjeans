@@ -10,6 +10,10 @@ module.exports = (sequelize, Sequelize) => {
 		  primaryKey: true,
 		  autoIncrement: true
 	  },
+	  boardName: {
+		type: Sequelize.STRING(16),
+		allowNull: false
+	  },
 	  parentCommentId: {
 		type: Sequelize.INTEGER,
 		  allowNull: true
@@ -22,10 +26,6 @@ module.exports = (sequelize, Sequelize) => {
     timestamps: true,
     freezeTableName: true
   });
-	// user의 id로 외래키 설정
-	Comment.associate = function(models) {
-		Comment.belongsTo(models.User);
-	}
   return Comment;
 };
 

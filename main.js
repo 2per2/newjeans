@@ -95,6 +95,7 @@ app.get('/comment', commentRouter);
 app.post('/comment', commentRouter);
 app.delete('/comment/delete/:commentId', commentRouter);
 app.get('/member/:name', memberRouter);
+app.post('/member/:name', memberRouter);
 app.get('/signup', userRouter);
 app.post('/signup', userRouter);
 app.get('/signin', userRouter);

@@ -5,7 +5,7 @@ const db = require('../models/index'),
 	Op = db.Sequelize.Op;
 
 module.exports = {
-	getAllComments: async (req, res, next) => {
+	showCommentPage: async (req, res) => {
 		try {
 			data = await Comment.findAll({
 				include: [{ model: User }] // User 모델의 데이터를 함께 가져옴
@@ -17,17 +17,40 @@ module.exports = {
 			});
 		}
 	},
+	showMemberPage: async (req, res) => {
+		try {
+			data = await Comment.findAll({
+				include: [{ model: User }] // User 모델의 데이터를 함께 가져옴
+			});
+			res.render('member', { message: req.flash(), comments: data, name: req.params.name });
+		} catch (err) {
+			res.status(500).send({
+				message: err.message
+			});
+		}
+	},
+	getBoardName: (req, res, next) => {
+		const currentUrl = req.originalUrl;
+
+		if (currentUrl.includes('/member')) {
+			const memberName = req.params.name;
+			req.boardName = memberName;
+		} else {
+			req.boardName = 'forum';
+		}
+		next();
+	},
 	postComment: async (req, res, next) => {
 		try {
 			const userId = req.user.id;
 			const newContent = req.body.content; // res.body 아님!			
-			const parentId = req.body.parentCommentId; // 하... 타입 무조건 맞춰줄것 + let으로 설정하기...
-			console.log(userId, newContent, parentId);
-			
+			const parentId = req.body.parentCommentId; // 하... 타입 무조건 맞춰줄것 + let으로 설정하기..
+			console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',req.boardName);
 			const comment = await Comment.create({
 				content: newContent,
 				userId: userId,
-				parentCommentId: parentId 
+				parentCommentId: parentId,
+				boardName: req.boardName 
 			})
 
 			if (!comment) {

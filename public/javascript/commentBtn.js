@@ -11,7 +11,9 @@ if (postBtn) {
                         parentId = parseInt(parentId, 10);
                 }
 
-                fetch('/comment', {
+		const currentUrl = window.location.href;
+		console.log(currentUrl);
+                fetch(currentUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

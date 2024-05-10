@@ -1,17 +1,8 @@
  <h1>Comments</h1>
-    <% if (message && message.success) { %>
-        <div> <%= message.success %> </div>
-<% } %>
-
-<% if (message && message.error) { %>
-    <div>
-        <%= message.error %>
-    </div>
-<% } %>
     <!-- 댓글 목록 -->
     <ul>
         <% comments.forEach(comment => { %>
-		<% if (comment.boardName === 'forum') { %>
+		<% if (comment.boardName === name) { %>
 		    <li>
 			<% if (comment.parentCommentId) { %>
 				<a href='#'> reply to <%= comment.parentCommentId %> </a>

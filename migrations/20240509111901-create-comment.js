@@ -14,6 +14,10 @@ module.exports = {
 		allowNull: true,
 		type: Sequelize.INTEGER
 	},
+	    boardName: {
+		type: Sequelize.STRING(16),
+		allowNull: false
+	    },
       content: {
         type: Sequelize.STRING,
         allowNull: false
