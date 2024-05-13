@@ -29,7 +29,7 @@ module.exports = {
     try {
         const user = await User.findOne({ where: { email: userEmail } });
         if (!user) {
-            return 'user not found';
+            return null;
         }
 	    return user;
     } catch (error) {
@@ -39,7 +39,10 @@ module.exports = {
     signUp: async (req, res, next) => {
         try {
             const { id, password, email, birthdate } = req.body;
-
+		const existingIdCount = await User.count({ where: { id }});
+		const existingEmailCount = await User.count({ where: { email }});
+		if (existingIdCount > 0) {res.send('Enter other id');}
+		if (existingEmailCount > 0) {res.send('Enter other email');}
             // 비밀번호 해싱
             const hashedPassword = await bcrypt.hash(password, 10);
 

@@ -11,12 +11,10 @@ router.get('/password_reset', (req, res) => {
 });
 router.post('/password_reset', async (req, res, next) => { 
 	const userEmail = req.body.email; // body에서 추출한 이메일
-	console.log(userEmail);
 	const user = await userController.getUserByEmail(userEmail);
 	if (user === 'user not found') {
 		res.send('enter other email');
 	}
-	console.log(user);
 	res.cookie('email', req.body.email, {});
 	res.redirect('/password_setting');
 	next();

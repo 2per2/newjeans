@@ -20,9 +20,13 @@
 			<%= comment.commentId %>
 			'> <%= comment.commentId %> </a>
 			<strong><%= comment.userId %></strong>: <%= comment.content %> <%= comment.createdAt %>
-			<button class='btn-delete-comment' data-commentId='
-				<%= comment.commentId %>
-			'>delete</button>
+			<% if (loggedIn) { %>	
+				<% if (currentUser.id === comment.userId) { %>
+				<button class='btn-delete-comment' data-commentId='
+					<%= comment.commentId %>
+				'>delete</button>
+				<% } %>
+			<% } %>
 		    </li>
 		<% } %>
 		<% }); %>
